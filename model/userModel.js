@@ -5,14 +5,16 @@ const Schema = mongoose.Schema;
 
 const userModelSchema = new Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
+    first_name: { type: String, default: null },
+    last_name: { type: String, default: null },
+    email: { type: String, unique: true, required: true },
+    password: { type: String },
+    token: { type: String },
   },
   { collection: "Users" }
 );
 
-module.exports = mongoose.model("Users", userModelSchema);
+module.exports = mongoose.model("User", userModelSchema);
 
 // exports.findUser = async (email) => {
 //   console.log(`finding user with email ${email}`);
@@ -24,17 +26,4 @@ module.exports = mongoose.model("Users", userModelSchema);
 //     .catch((err) => {
 //       console.log(error);
 //     });
-// };
-
-// const users = [
-//   {
-//     id: 1,
-//     name: "testuser",
-//     email: "test@gmail.com",
-//     password: "test123",
-//   },
-// ];
-
-// exports.findUser = (email) => {
-//   return users.find((user) => user.email === email);
 // };

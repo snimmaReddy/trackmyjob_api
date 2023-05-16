@@ -2,15 +2,12 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const app = express();
-const port = 5000;
 const hostname = "localhost";
 const authRoutes = require("./routes/authRoute");
 const applicationRoutes = require("./routes/applicationRoutes");
 const mongoose = require("mongoose");
 
 app.use(express.json());
-
-const mongoDB = "mongodb://127.0.0.1:27017/Trackmyjob";
 
 app.use(express.json());
 app.use(express.text());
@@ -21,14 +18,14 @@ app.use(
 );
 
 mongoose
-  .connect(mongoDB, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // userCreateIndex: true,
   })
   .then(() => {
-    app.listen(port, hostname, () => {
-      console.log("server running", port);
+    app.listen(process.env.PORT, hostname, () => {
+      console.log("server running", process.env.PORT);
     });
   })
   .catch((err) => console.log(err.message));

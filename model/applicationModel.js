@@ -6,11 +6,24 @@ const applicationModelSchema = new Schema(
   {
     companyName: { type: String, required: true },
     jobRole: { type: String, required: true },
-    jobDesc: { type: String, required: true },
-    jobPortal: { type: String, required: true },
+    jobDesc: { type: String },
+    jobPortal: { type: String },
     jobLink: { type: String, required: true },
-    refDetails: { type: String, required: true },
+    refDetails: { type: String },
     notes: { type: String },
+    status: {
+      type: String,
+      enum: [
+        "applied",
+        "online_assessment",
+        "interview",
+        "rejected",
+        "selected",
+      ],
+      default: "applied",
+    },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    createdAt: { type: mongoose.Schema.Types.Date, default: Date.Now },
   },
   { collection: "applications" }
 );
