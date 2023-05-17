@@ -4,6 +4,7 @@ const userModel = require("../model/userModel");
 const authUtils = require("../Utils/authUtils");
 
 exports.login = async (req, res) => {
+  console.log("Auth Login API Called");
   const { email, password } = req.body;
   if (!(email && password)) {
     return res.status(400).send("All input is required");
@@ -16,11 +17,13 @@ exports.login = async (req, res) => {
 
     // save user token
     user.token = token;
+    console.log("Response OK token sent");
     res.status(200).json(user);
   } else res.status(400).send("Invalid Credentials");
 };
 
 exports.register = async (req, res) => {
+  console.log("Auth register API Called");
   const { first_name, last_name, email, password } = req.body;
 
   if (!(email && password && first_name && last_name)) {
