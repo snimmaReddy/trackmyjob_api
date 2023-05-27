@@ -15,12 +15,40 @@ exports.newApplication = async (req, res) => {
       console.log(error);
     }
   }
+};
 
-  // appData
-  //   .save()
-  //   .then((result) => {
-  //     console.log(result);
-  //     res.status(200).send("Added application");
-  //   })
-  //   .catch((err) => console.log(err));
+exports.getApplications = async (req, res) => {
+  const user = req.data.user_id;
+  console.log("getApplications");
+  try {
+    const appData = await applicationModel.find({ createdBy: user });
+    return res.status(200).send(appData);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.updateStatus = async (req, res) => {
+  const user = req.body._id;
+  const temp_status = req.body.status;
+  try {
+    const result = await applicationModel.findByIdAndUpdate(user, {
+      status: temp_status,
+    });
+    return res.status(200).send("Success");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.deleteApplications = async (req, res) => {
+  console.log("Delete applications called");
+  const user = req.body._id;
+  const appData = req.body;
+  try {
+    const result = await applicationModel.deleteMany({ _id: { $in: appData } });
+  } catch (err) {
+    console.log(err);
+  }
+  return res.status(200).send(appData);
 };
