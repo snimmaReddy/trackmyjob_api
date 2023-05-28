@@ -1,4 +1,5 @@
 const applicationModel = require("../model/applicationModel");
+const mongoose = require("mongoose");
 
 exports.newApplication = async (req, res) => {
   const appData = req.body;
@@ -15,12 +16,27 @@ exports.newApplication = async (req, res) => {
       console.log(error);
     }
   }
+};
 
-  // appData
-  //   .save()
-  //   .then((result) => {
-  //     console.log(result);
-  //     res.status(200).send("Added application");
-  //   })
-  //   .catch((err) => console.log(err));
+exports.getStats = async (req, res) => {
+  const match = { createdBy: new mongoose.Types.ObjectId(req.data.user_id) };
+  const group = {
+    _id: {
+      $dateToString: {
+        format: "%m/%d/%Y",
+        date: "$createdAt",
+        timezone: "America/New_York",
+      },
+    },
+    count: { $sum: 1 },
+  };
+
+  try {
+    let data = await applicationModel
+      .aggregate([{ $match: match }, { $group: group }])
+      .exec();
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };

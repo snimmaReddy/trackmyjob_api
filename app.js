@@ -5,6 +5,7 @@ const app = express();
 const hostname = "localhost";
 const authRoutes = require("./routes/authRoute");
 const applicationRoutes = require("./routes/applicationRoutes");
+const userRoutes = require("./routes/userRoutes");
 const mongoose = require("mongoose");
 
 app.use(express.json());
@@ -43,6 +44,7 @@ mongoose
 
 app.use("/api/auth", authRoutes);
 app.use("/api/applications", applicationRoutes);
+app.use("/api/user", userRoutes);
 
 // app.post("/api/auth/login", (req, res) => {
 //   console.log(req.body);

@@ -14,13 +14,13 @@ const applicationModelSchema = new Schema(
     status: {
       type: String,
       enum: [
-        "applied",
+        "Applied",
         "online_assessment",
         "interview",
         "rejected",
         "selected",
       ],
-      default: "applied",
+      default: "Applied",
     },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     createdAt: { type: mongoose.Schema.Types.Date, default: Date.Now },
