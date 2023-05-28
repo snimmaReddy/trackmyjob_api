@@ -17,7 +17,7 @@ const applicationModelSchema = new Schema(
         "Applied",
         "online_assessment",
         "interview",
-        "rejected",
+        "Rejected",
         "selected",
       ],
       default: "Applied",

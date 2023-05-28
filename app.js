@@ -19,7 +19,7 @@ app.use(
 );
 
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect("mongodb://localhost:27017/Trackmyjob", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // userCreateIndex: true,
