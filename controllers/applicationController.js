@@ -20,7 +20,6 @@ exports.newApplication = async (req, res) => {
 
 exports.getApplications = async (req, res) => {
   const user = req.data.user_id;
-  console.log("getApplications");
   try {
     const appData = await applicationModel.find({ createdBy: user });
     return res.status(200).send(appData);
