@@ -13,7 +13,8 @@ It provides a centralized platform for users to stay organized and on top of the
 * Integration with Job Boards: Seamlessly import job postings and application details from popular job boards such as Indeed, Glassdoor, and LinkedIn.
 
 ### Installation
-Clone the repository: git clone https://github.com/your-username/JobTrackr.git
+Clone the repository: git clone https://github.com/Gopinadendla11/trackmyjob_frontend.git for frontend.
+Clone the repository: git clone https://github.com/Gopinadendla11/trackmyjob_api.git for backend.
 Navigate to the project directory: cd JobTrackr
 Install the dependencies: npm install
 Set up the database connection and environment variables.
