@@ -15,10 +15,10 @@ const applicationModelSchema = new Schema(
       type: String,
       enum: [
         "Applied",
-        "online_assessment",
-        "interview",
+        "Online Assessment",
+        "Interview",
         "Rejected",
-        "selected",
+        "Selected",
       ],
       default: "Applied",
     },

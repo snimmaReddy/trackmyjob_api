@@ -17,14 +17,14 @@ exports.getUserData = async (req, res) => {
     if (applied) user.n_applied = applied.length;
 
     assessments = applications.filter(
-      (app) => app.status === "online_assessment"
+      (app) => app.status === "Online Assessment"
     );
     if (assessments) user.n_assessments = assessments.length;
 
-    interviews = applications.filter((app) => app.status === "interview");
+    interviews = applications.filter((app) => app.status === "Interview");
     if (interviews) user.n_interviews = interviews.length;
 
-    rejected = applications.filter((app) => app.status === "rejected");
+    rejected = applications.filter((app) => app.status === "Rejected");
     if (rejected) user.n_rejected = rejected.length;
 
     //user.applications = applications;

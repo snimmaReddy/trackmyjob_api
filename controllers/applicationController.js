@@ -42,7 +42,13 @@ exports.updateStatus = async (req, res) => {
 };
 
 exports.getStats = async (req, res) => {
-  const match = { createdBy: new mongoose.Types.ObjectId(req.data.user_id) };
+  const match = {
+    createdBy: new mongoose.Types.ObjectId(req.data.user_id),
+    createdAt: {
+      $gte: new Date(Date.now() - 7 * 86400000),
+      $lte: new Date(),
+    },
+  };
   const group = {
     _id: {
       $dateToString: {
@@ -54,11 +60,36 @@ exports.getStats = async (req, res) => {
     count: { $sum: 1 },
   };
 
+  const dates = [];
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date();
+    date.setDate(date.getDate() - i);
+    dates.push(date.toLocaleDateString("en-US"));
+  }
+
   try {
     let data = await applicationModel
       .aggregate([{ $match: match }, { $group: group }])
       .exec();
-    res.status(200).send(data);
+
+    const newData = [];
+    for (const date of dates) {
+      const existingData = data.find(
+        (item) => Date.parse(item._id) === Date.parse(date)
+      );
+      if (existingData) {
+        newData.push(existingData);
+      } else {
+        newData.push({ _id: date, count: 0 });
+      }
+    }
+
+    newData.sort((a, b) => {
+      const dateA = new Date(a._id);
+      const dateB = new Date(b._id);
+      return dateA - dateB;
+    });
+    res.status(200).send(newData);
   } catch (error) {
     res.status(400).send(error);
   }
