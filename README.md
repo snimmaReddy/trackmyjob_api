@@ -30,7 +30,7 @@ Set reminders for deadlines, interviews, and follow-up tasks.
 Use the analytics feature to track your job search progress and success rate.
 
 ### Technologies Used
-* Front-end: React,Tailwind CSS, HTML
+* Front-end: React,Tailwind CSS, HTML, JavaScript
 * Back-end: Node.js, Express.js
 * Database: MongoDB
 
