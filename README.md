@@ -40,4 +40,4 @@ Contributions are welcome! If you have any ideas, suggestions, or bug reports, p
 This project is licensed under the MIT License. Feel free to use and modify the codebase as per the terms of the license.
 
 ### Contact
-For any inquiries or support, please contact gopinadendla1@gmail.com.
+For any inquiries or support, please contact sharaschandrika.799@gmail.com.
